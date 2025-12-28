@@ -1,168 +1,158 @@
-## 📦 Late Delivery Prediction System (End‑to‑End ML + Data Engineering Project)
-An end‑to‑end machine learning system that predicts whether an e‑commerce order will be delivered late, built using the Olist Brazilian E‑Commerce dataset.
-This project demonstrates full‑stack ML engineering: data ingestion, cleaning, feature engineering, model training, optimization, serialization, and deployment via Streamlit.
+# 📦 Late Delivery Prediction System  
+**End-to-End Machine Learning & Data Engineering Project**
 
-🚀 Project Overview
-Late deliveries significantly impact customer satisfaction and logistics efficiency.
-This project builds a predictive system that allows businesses to identify high‑risk orders before they are shipped, enabling proactive interventions.
+An end-to-end machine learning system that predicts whether an e-commerce order will be delivered **late or on time**, built using the **Olist Brazilian E-Commerce Dataset**.
 
-The system includes:
+This project demonstrates **full-stack ML engineering**, covering data ingestion, ETL pipelines, feature engineering, model training and optimization, serialization, and deployment via **Streamlit**.
 
-A PostgreSQL data warehouse
+---
 
-A fully automated ETL pipeline
+## 🚀 Project Overview
 
-Feature engineering and ML modeling (XGBoost)
+Late deliveries negatively impact customer satisfaction, logistics efficiency, and revenue.  
+This system enables businesses to **identify high-risk orders before shipment**, allowing proactive interventions.
 
-A production‑ready prediction pipeline
+### The system includes:
+- A **PostgreSQL data warehouse**
+- A fully automated **ETL pipeline**
+- Feature engineering and ML modeling (**XGBoost**)
+- A production-ready inference pipeline
+- A real-time **Streamlit web application**
 
-A real‑time Streamlit web application
+---
 
-📊 Key Features
-Ingested and modeled 100k+ e‑commerce records across 8+ relational tables
+## 📊 Key Highlights
 
-Automated ETL using SQLAlchemy, reducing manual prep time by 90%
+- Ingested and modeled **100k+ e-commerce records** across **8+ relational tables**
+- Automated ETL using **SQLAlchemy**, reducing manual data prep by **90%**
+- Engineered **15+ predictive features**, improving model signal by **22%**
+- Achieved **84% ROC-AUC** and **18% F1-score improvement** after tuning
+- Built a robust inference pipeline with **0% prediction failures**
+- Deployed a real-time Streamlit app with **<200ms latency**
+- Dynamic dropdowns for cities using saved **LabelEncoders**
+- Fully reproducible with saved model, encoders, and schema files
 
-Engineered 15+ predictive features improving model signal by 22%
+---
 
-Achieved 84% ROC‑AUC and 18% F1‑score improvement after tuning
+## 🛠️ Tech Stack
 
-Built a robust inference pipeline with 0% prediction failures
+### Languages & Libraries
+- Python
+- Pandas, NumPy
+- Scikit-learn
+- XGBoost
+- SQLAlchemy, Psycopg2
+- Streamlit
+- Joblib
 
-Deployed a real‑time Streamlit app with <200ms latency
+### Database
+- PostgreSQL
 
-Dynamic dropdowns for city selection using LabelEncoder classes
+### Tools
+- Git & GitHub
+- VS Code
+- Jupyter Notebook
 
-Fully reproducible with saved model, encoders, and schema files
+---
 
-🛠️ Tech Stack
-Languages & Libraries
+## 📁 Project Structure
 
-Python, Pandas, NumPy
-
-Scikit‑learn, XGBoost
-
-SQLAlchemy, Psycopg2
-
-Streamlit
-
-Joblib
-
-Database
-
-PostgreSQL
-
-Tools
-
-Git, VS Code, Jupyter Notebook
-
-📁 Project Structure
-Code
 📦 late-delivery-prediction
 │
-├── data/                     # Raw and processed datasets
-├── notebooks/                # EDA, preprocessing, modeling
-├── models/                   # Saved model + encoders
-├── app.py                    # Streamlit application
-├── etl/                      # SQLAlchemy ingestion scripts
+├── data/ # Raw and processed datasets
+├── notebooks/ # EDA, preprocessing, modeling
+├── models/ # Saved model & encoders
+├── etl/ # SQLAlchemy ingestion scripts
+├── app.py # Streamlit application
 ├── requirements.txt
 └── README.md
-🔧 How It Works
-1. Data Ingestion
-Loaded Olist datasets
 
-Designed relational schema
 
-Ingested into PostgreSQL using SQLAlchemy
+---
 
-2. Data Cleaning
-Handled missing values
+## 🔧 How the System Works
 
-Normalized timestamps
+### 1️⃣ Data Ingestion
+- Loaded Olist datasets
+- Designed relational schema
+- Ingested data into PostgreSQL using SQLAlchemy
 
-Removed duplicates
+### 2️⃣ Data Cleaning
+- Handled missing values
+- Normalized timestamps
+- Removed duplicates
+- Treated outliers
 
-Treated outliers
-
-3. Feature Engineering
+### 3️⃣ Feature Engineering
 Created features such as:
+- Purchase hour
+- Freight-to-price ratio
+- Delivery delay
+- Customer–seller distance
+- Payment installments
+- Product category encodings
 
-Purchase hour
+### 4️⃣ Model Training
+- Compared **RandomForest** vs **XGBoost**
+- Tuned hyperparameters
+- Selected **XGBoost** based on ROC-AUC
 
-Freight ratio
+### 5️⃣ Model Serialization
+Saved production-ready artifacts:
+- `xgb_late_delivery.pkl`
+- `label_encoders.pkl`
+- `columns_order.pkl`
+- `numeric_columns.pkl`
+- `categorical_columns.pkl`
 
-Delivery delay
-
-Customer–seller distance
-
-Payment installments
-
-Product category encodings
-
-4. Model Training
-Compared RandomForest vs XGBoost
-
-Tuned hyperparameters
-
-Selected XGBoost (best ROC‑AUC)
-
-5. Model Serialization
-Saved:
-
-xgb_late_delivery.pkl
-
-label_encoders.pkl
-
-columns_order.pkl
-
-numeric_columns.pkl
-
-categorical_columns.pkl
-
-6. Deployment
+### 6️⃣ Deployment
 Built a Streamlit app that:
+- Accepts user inputs
+- Encodes features safely
+- Runs real-time inference
+- Displays prediction and probability
 
-Accepts user inputs
+---
 
-Encodes them safely
+## 🖥️ Streamlit App
 
-Runs the model
+The application allows users to input:
+- Product price
+- Freight value
+- Purchase hour
+- Seller city
+- Customer city
 
-Displays prediction + probability
+**Output:**
+- Prediction: **Late** / **On-time**
+- Probability score
 
-🖥️ Streamlit App Preview
-The app allows users to input:
+---
 
-Price
+## 📈 Model Performance
 
-Freight value
+| Metric      | Score |
+|------------|-------|
+| ROC-AUC    | 0.84  |
+| F1-Score   | +18% improvement |
+| Precision  | High  |
+| Recall     | High  |
 
-Purchase hour
+---
 
-Seller city
+## ▶️ How to Run Locally
 
-Customer city
+```bash
+# Clone the repository
+git clone https://github.com/aadilquamri/ecommerce.git
+cd ecommerce
 
-And returns:
+# Create virtual environment (optional)
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
 
-Prediction: Late / On‑time
+# Install dependencies
+pip install -r requirements.txt
 
-Probability score
-
-📈 Model Performance
-Metric	Score
-ROC‑AUC	0.84
-F1‑Score	+18% improvement
-Precision	High
-Recall	High
-📌 Future Improvements
-Add SHAP explainability
-
-Add geolocation distance calculation
-
-Deploy backend API using FastAPI
-
-Add CI/CD pipeline
-
-🤝 Contributions
-Pull requests and suggestions are welcome!
+# Run Streamlit app
+streamlit run app.py
